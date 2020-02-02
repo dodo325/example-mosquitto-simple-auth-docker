@@ -6,16 +6,21 @@ Simple example of how to run Mosquitto with auth in Docker. I have used the [off
 
 Place the Mosquitto credentials to the `.env` file that will be used by the [docker-compose](https://docs.docker.com/compose/).
 
-```
+```bash
 MOSQUITTO_USERNAME=mosquitto
 MOSQUITTO_PASSWORD=mosquitto
+```
+### Give access:
+
+```bash
+sudo chmod o+w log/mosquitto.log
+sudo chmod o+w config/mosquitto.conf
 ```
 
 ### Build and run
 
-```
-docker-compose build
-docker-compose up -d
+```bash
+docker-compose up -d --build
 ```
 
 ### Testing
@@ -24,7 +29,7 @@ Try the [MQTT client](http://mqttfx.org/) to connect to the Mosquitto MQTT Broke
 
 Or use official `mosquitto_pub` and `mosquitto_sub` utilities for publishing and subscribing.
 
-```
+```bash
 # Subscribe to topic.
 mosquitto_sub -h localhost -t test -u "mosquitto" -P "mosquitto"
 
